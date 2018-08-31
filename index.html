@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title># frtschedule.github.io</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container text-center">
+	<p class="label label-primary" id="demo"></p>
+	<div class="label label-danger">This week</div>
+	<div class="turna label label-success"></div>
+	<div class="turnb label label-success"></div>
+</div>
+<div id="prevWeek">
+	
+</div>
+<div id="currWeek">
+	
+</div>
+<dev id="nextWeek">
+	
+</dev>
+
+	
+<script type="text/javascript">
+
+	var weekday = [];
+	
+	weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+	function getLongDay(t) {
+	    var d = new Date();
+	    var weekday = new Array(7);
+	    weekday[0] = "Sunday";
+	    weekday[1] = "Monday";
+	    weekday[2] = "Tuesday";
+	    weekday[3] = "Wednesday";
+	    weekday[4] = "Thursday";
+	    weekday[5] = "Friday";
+	    weekday[6] = "Saturday";
+
+	    return weekday[t];
+	    //document.getElementById("demo").innerHTML = n;
+	}
+	
+	const member = [
+		{
+			"name":"annt37",
+			"birthday":"01/01/1995"
+		},
+		{
+			"name":"linhpn7",
+			"birthday":"01/01/1995"
+		},
+		{
+			"name":"trungth3",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"quangnd37",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"tuanna",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"hoadg",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"vinhtv7",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"tantv",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"khanhnq30",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"xuantv",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"datnt86",
+			"birthday":"01/01/1995",
+		},
+		{
+			"name":"binhbk",
+			"birthday":"01/01/1995",
+		},
+	];
+
+	$(document).ready(function(){
+		let now = new Date();
+		let onejan = new Date(now.getFullYear(), 0, 1);
+		week = Math.ceil( (((now - onejan) / 86400000) + onejan.getDay() + 1) / 7 );
+
+		console.log(member[week%member.length]);
+		$('.turna').text(member[week%member.length].name);
+		let d = new Date();
+		console.log(d.getDay());
+		let t = -1;
+		for(let i = 0; i<7;i++){
+			if(weekday[(d.getDay()+i)%7 + 6]=="Saturday"){
+				t = i;
+			}
+		}
+		console.log(getLongDay(t));
+		
+		let turn = 0;
+
+		if(getLongDay(t) === 'Saturday'){
+			let turna = turn;
+			let turnb = ( turn+1 > member.length)? 0: turn + 1;
+			console.log(member[turna],member[turnb],member.length);
+			
+
+			
+			$('.turnb').text(member[turnb].name);
+
+			turn++;
+			if( turn+1 > member.length){
+				turn = 0;
+			}
+		}else{
+			console.log('Not saturday');
+		}
+		console.log(turn,turn+1);
+	});
+
+</script>
+<script>
+var myVar = setInterval(myTimer, 1000);
+
+function myTimer() {
+    var d = new Date();
+    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+}
+</script>
+</body>
+</html>
