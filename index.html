@@ -112,8 +112,9 @@
 		let onejan = new Date(now.getFullYear(), 0, 1);
 		week = Math.ceil( (((now - onejan) / 86400000) + onejan.getDay() + 1) / 7 );
 
-		console.log(member[week%member.length]);
-		$('.turna').text(member[week%member.length].name);
+		console.log(member[week%(member.length/2)]);
+		$('.turna').text(member[week%(member.length/2)].name);
+		$('.turnb').text(member[week%(member.length/2)+1].name);
 		let d = new Date();
 		console.log(d.getDay());
 		let t = -1;
